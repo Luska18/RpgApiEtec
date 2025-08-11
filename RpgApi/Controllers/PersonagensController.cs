@@ -17,10 +17,10 @@ namespace RpgApi.Controllers
         private readonly DataContext _context;
         private readonly IConfiguration _configuration;
 
-
-        public PersonagensController(DataContext context)
+        public PersonagensController(DataContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
         [HttpGet("{id}")] //Buscar pelo id
