@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using RpgApi.Data;
 using RpgApi.Models;
 using Microsoft.Extensions.Configuration;
+using RpgApi.Extensions;
 
 namespace RpgApi.Controllers
 {
@@ -127,7 +128,7 @@ namespace RpgApi.Controllers
             }
         }
 
-                [HttpPut("RestaurarPontosVida")]
+        [HttpPut("RestaurarPontosVida")]
         public async Task<IActionResult> RestaurarPontosVidaAsync(Personagem p)
         {
             try
@@ -226,8 +227,10 @@ namespace RpgApi.Controllers
         {
             try
             {
+                int id = User.UsuarioId();
+
                 List<Personagem> lista = await _context.TB_PERSONAGENS
-                            .Where(u => u.Usuario.Id == userId)
+                            .Where(u => u.Usuario.Id == id)
                             .ToListAsync();
 
                 return Ok(lista);
